@@ -16,6 +16,9 @@ Inspiring from https://github.com/mattwoberts/execsqlformat. so Thank you @mattw
 
 ## Release Notes
 
-### 0.0.1
+## [0.0.2] - 2018-12-18
+### Fixed
+- fix bug in sp_executesql with an unnamed parameter value
 
-Initial release
+## [0.0.1] - 2018-11-13
+- Initial release

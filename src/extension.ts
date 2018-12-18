@@ -26,9 +26,14 @@ export function activate(context: vscode.ExtensionContext) {
         const match = regex.exec(text);
 
         if (match) {
+          let parameters = match[2].split(",");
           let newText = "DECLARE " + match[2] + "\n";
 
-          match[3].split(",").forEach((value: string) => {
+          match[3].split(",").forEach((value,index) => {
+            if (value[0]!=='@')
+            {
+              value =  parameters[index].split(' ')[0] + '=' + value;
+            }
             newText += "SET " + value + "\n";
           });
 

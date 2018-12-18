@@ -2,7 +2,7 @@
     "name": "sqlops-spexecutesql-to-sql",
     "displayName": "sqlops-spexecutesql-to-sql",
     "description": "sp_executesql to sql",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "pejmannikram",
     "icon": "images/icon.png",
     "repository": {
