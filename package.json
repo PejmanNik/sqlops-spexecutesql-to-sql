@@ -2,7 +2,7 @@
     "name": "sqlops-spexecutesql-to-sql",
     "displayName": "sqlops-spexecutesql-to-sql",
     "description": "sp_executesql to sql",
-    "version": "0.0.2",
+    "version": "1.0.0",
     "publisher": "pejmannikram",
     "icon": "images/icon.png",
     "repository": {
@@ -42,11 +42,11 @@
         "test": "npm run compile && node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
-        "typescript": "^2.6.1",
-        "vscode": "^1.1.6",
+        "typescript": "^3.5.2",
+        "vscode": "^1.1.35",
         "sqlops": "github:anthonydresser/sqlops-extension-sqlops",
-        "tslint": "^5.8.0",
-        "@types/node": "^7.0.43",
-        "@types/mocha": "^2.2.42"
+        "tslint": "^5.18.0",
+        "@types/node": "^12.0.10",
+        "@types/mocha": "^5.2.7"
     }
 }

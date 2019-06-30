@@ -37,28 +37,21 @@ export function activate(context: vscode.ExtensionContext) {
             newText += "SET " + value + "\n";
           });
 
-          newText += "\n" + match[1];
-
-          await textEditor.edit((editBuilder: vscode.TextEditorEdit) => {
+          newText += "\n" + match[1] + "\n";
+          
+          await textEditor.edit((editBuilder: vscode.TextEditorEdit) => {            
             editBuilder.replace(getFullRange(), newText);
           },
-          { undoStopBefore: true, undoStopAfter: false });
+          { undoStopBefore: true, undoStopAfter: false });          
+          
+          // move anchor to first of the document
+          textEditor.selections = [new vscode.Selection(0,0,0,0)];
 
-          const formater = await vscode.commands.executeCommand(
-            "vscode.executeFormatDocumentProvider",
-            textEditor.document.uri,
-            {}
-          );
-
-          if (formater) {
-            await textEditor.edit(
-              (editBuilder: vscode.TextEditorEdit) => {
-                const edit = formater as vscode.TextEdit[];
-                editBuilder.replace(getFullRange(), edit[0].newText);
-              },
-              { undoStopBefore: false, undoStopAfter: true }
-            );
-          }
+          // run editor code format
+          vscode.commands.executeCommand("editor.action.formatDocument");
+          
+          // move scrolls to best view
+          textEditor.revealRange(new vscode.Range(0,0,0,0));          
         }
       }
     )

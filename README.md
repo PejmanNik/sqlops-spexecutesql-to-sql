@@ -6,15 +6,20 @@ This extension can be helpful in debugging SQL query executed by your applicatio
 
 press `F1` and type `Convert` command to run convertor on active query.
 
-![gif](images/convert.gif)
+![gif](https://raw.githubusercontent.com/PejmanNik/sqlops-spexecutesql-to-sql/master/images/convert.gif)
 
 ## Installation
-The current release is available to [download as a .vsix file](https://github.com/PejmanNik/sqlops-spexecutesql-to-sql/releases/download/0.0.1/sqlops-spexecutesql-to-sql-0.0.1.vsix) and can be installed by opening the command palette (`ctrl/command+shift+p`) and selecting `Extensions: Install from VSIX...`
+The current release is available to [download as a .vsix file](https://github.com/PejmanNik/sqlops-spexecutesql-to-sql/releases/download/1.0.0/sqlops-spexecutesql-to-sql-1.0.0.vsix) and can be installed by opening the command palette (`ctrl/command+shift+p`) and selecting `Extensions: Install from VSIX...`
 
 ## Thanks to
 Inspiring from https://github.com/mattwoberts/execsqlformat. so Thank you @mattwoberts.
 
 ## Release Notes
+
+## [1.0.0] - 2019-06-30
+### Fixed
+- fix a bug in format document
+- improve the experience with modify selection and scrolls position
 
 ## [0.0.2] - 2018-12-18
 ### Fixed
