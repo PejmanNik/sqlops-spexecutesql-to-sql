@@ -21,7 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
           );
         };
 
-        const regex = /(?:exec)*\s*sp_executesql\s+N'([\s\S]*)',\s*N'(@[\s\S]*?)',\s*([\s\S]*)/;
+        const regex = /(?:exec)*\s*sp_executesql\s+N'([\s\S]*)'\s*,\s*N'(@[\s\S]*?)'\s*,\s*([\s\S]*)/;
         const text = textEditor.document.getText();
         const match = regex.exec(text);
 

@@ -16,6 +16,10 @@ Inspiring from https://github.com/mattwoberts/execsqlformat. so Thank you @mattw
 
 ## Release Notes
 
+## [1.0.1] - 2019-09-07
+### Fixed
+- fix bug in regex for reading query with extra white character
+
 ## [1.0.0] - 2019-06-30
 ### Fixed
 - fix a bug in format document
