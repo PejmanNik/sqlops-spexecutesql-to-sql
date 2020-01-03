@@ -1,6 +1,7 @@
 "use strict";
 
 import * as vscode from "vscode";
+import parseQuery from "./parser";
 
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
@@ -26,32 +27,24 @@ export function activate(context: vscode.ExtensionContext) {
         const match = regex.exec(text);
 
         if (match) {
-          let parameters = match[2].split(",");
-          let newText = "DECLARE " + match[2] + "\n";
+          // convert sp_executesql query to sql query
+          const newText = parseQuery(match[2], match[3], match[1]);
 
-          match[3].split(",").forEach((value,index) => {
-            if (value[0]!=='@')
-            {
-              value =  parameters[index].split(' ')[0] + '=' + value;
-            }
-            newText += "SET " + value + "\n";
-          });
+          await textEditor.edit(
+            (editBuilder: vscode.TextEditorEdit) => {
+              editBuilder.replace(getFullRange(), newText);
+            },
+            { undoStopBefore: true, undoStopAfter: false }
+          );
 
-          newText += "\n" + match[1] + "\n";
-          
-          await textEditor.edit((editBuilder: vscode.TextEditorEdit) => {            
-            editBuilder.replace(getFullRange(), newText);
-          },
-          { undoStopBefore: true, undoStopAfter: false });          
-          
           // move anchor to first of the document
-          textEditor.selections = [new vscode.Selection(0,0,0,0)];
+          textEditor.selections = [new vscode.Selection(0, 0, 0, 0)];
 
           // run editor code format
           vscode.commands.executeCommand("editor.action.formatDocument");
-          
+
           // move scrolls to best view
-          textEditor.revealRange(new vscode.Range(0,0,0,0));          
+          textEditor.revealRange(new vscode.Range(0, 0, 0, 0));
         }
       }
     )

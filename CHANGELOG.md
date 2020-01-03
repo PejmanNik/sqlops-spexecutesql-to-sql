@@ -5,6 +5,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.0.2] - 2020-01-04
+### Fixed
+- fix bug in parsing double quote in the query
+
 ## [1.0.1] - 2019-09-07
 ### Fixed
 - fix bug in regex for reading query with extra white character
