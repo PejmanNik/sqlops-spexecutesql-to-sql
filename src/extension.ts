@@ -22,17 +22,25 @@ export function activate(context: vscode.ExtensionContext) {
           );
         };
 
-        const regex = /(?:exec)*\s*sp_executesql\s+N'([\s\S]*)'\s*,\s*N'(@[\s\S]*?)'\s*,\s*([\s\S]*)/;
-        const text = textEditor.document.getText();
-        const match = regex.exec(text);
+        const regex = /(?:exec)*\s*sp_executesql\s*N'([\s\S]*?)'\s*,\s*N'(@[\s\S]*?)'\s*,\s*([\s\S]*?$)/mg
 
-        if (match) {
+        const text = textEditor.document.getText();
+        var replacedText = text;
+        var match = regex.exec(text);
+
+        // Iterate over all matches
+        while (match != null) {
           // convert sp_executesql query to sql query
           const newText = parseQuery(match[2], match[3], match[1]);
+          replacedText = replacedText.replace(match[0], newText);
 
+          match = regex.exec(text);
+        }
+
+        if (text != replacedText) {
           await textEditor.edit(
             (editBuilder: vscode.TextEditorEdit) => {
-              editBuilder.replace(getFullRange(), newText);
+              editBuilder.replace(getFullRange(), replacedText);
             },
             { undoStopBefore: true, undoStopAfter: false }
           );
