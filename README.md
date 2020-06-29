@@ -16,6 +16,10 @@ Inspiring from https://github.com/mattwoberts/execsqlformat. so Thank you @mattw
 
 ## Release Notes
 
+## [1.0.3] - 2020-06-29 - @gerneio
+### Enhancement
+- Support converting multiple sp_executesql statements [#6](https://github.com/PejmanNik/sqlops-spexecutesql-to-sql/pull/6)
+
 ## [1.0.2] - 2020-01-04
 ### Fixed
 - fix bug in parsing double quote in the query
