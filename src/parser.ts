@@ -11,6 +11,8 @@ function parseQuery(
   let result = "DECLARE " + parameterDeclaration + "\n";
 
   parameterValue.split(",").forEach((value, index) => {
+    value = value.trim();
+
     if (value[0] !== "@") {
       value = parameters[index].split(" ")[0] + "=" + value;
     }
