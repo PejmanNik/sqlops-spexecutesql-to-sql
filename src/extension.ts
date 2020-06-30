@@ -22,7 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
           );
         };
 
-        const regex = /(?:exec)*\s*sp_executesql\s*N'([\s\S]*?)'\s*,\s*N'(@[\s\S]*?)'\s*,\s*([\s\S]*?$)/mg
+        const regex = /(?:\bexec|\bexecute)*\s*sp_executesql\s*N'([\s\S]*?)'\s*,\s*N'(@[\s\S]*?)'\s*,\s*([\s\S]*?$)/mgi;
 
         const text = textEditor.document.getText();
         var replacedText = text;
