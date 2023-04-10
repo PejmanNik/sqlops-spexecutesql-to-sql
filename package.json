@@ -32,6 +32,23 @@
                 "title": "Convert",
                 "category": "sp_executesql to sql"
             }
+        ],
+        "configuration": [
+            {
+                "title": "Sqlops SpExecuteSql To Sql",
+                "properties": {
+                    "spexecutesql.surroundFloatWithSingleQuotes": {
+                        "type": "boolean",
+                        "defaultValue": false,
+                        "markdownDescription": "Surrounds `FLOAT` value with single quotes `'`."
+                    },
+                    "spexecutesql.replaceVariablesInQuery": {
+                        "type": "boolean",
+                        "defaultValue": false,
+                        "markdownDescription": "Replaces the variables in the query with their value."
+                    }
+                }
+            }
         ]
     },
     "scripts": {
@@ -42,11 +59,11 @@
         "test": "npm run compile && node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
-        "typescript": "^3.7.4",
-        "vscode": "^1.1.36",
+        "@types/mocha": "^5.2.7",
+        "@types/node": "^13.1.2",
         "sqlops": "github:anthonydresser/sqlops-extension-sqlops",
         "tslint": "^5.20.1",
-        "@types/node": "^13.1.2",
-        "@types/mocha": "^5.2.7"
+        "typescript": "^3.7.4",
+        "vscode": "^1.1.36"
     }
 }
