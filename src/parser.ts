@@ -4,7 +4,7 @@ function normalizeQuery(query: string) {
   return query.replace(/''/g, "'");
 }
 
-function doesParamFloatExistInParamDeclaration(parameterDeclaration:string, paramName:string){  
+function doesFloatParamExistInDeclaration(parameterDeclaration:string, paramName:string){  
   let paramWithUpperType = paramName + " FLOAT";
   let paramWithLowerType = paramName + " float";
   let indexOfUpper = parameterDeclaration.indexOf(paramWithUpperType);
@@ -17,7 +17,7 @@ function doesParamFloatExistInParamDeclaration(parameterDeclaration:string, para
   return false;
 }
 
-function isParamSurroundedWithSingleQuotes(paramValue:string){
+function isParamAlreadyInSingleQuotes(paramValue:string){
   if (paramValue[0] != "'" && paramValue[paramValue.length] != "'"){
     return true;
   }
@@ -25,9 +25,9 @@ function isParamSurroundedWithSingleQuotes(paramValue:string){
   return false;
 }
 
-function surroundFloatWithQuotesFlow(parameterDeclaration:string, paramName:string, paramValue:string, value:string, paramDict:Map<string, string>){
-  if (doesParamFloatExistInParamDeclaration(parameterDeclaration, paramName)){
-    if (isParamSurroundedWithSingleQuotes(paramValue)){
+function surroundFloatWithQuotes(parameterDeclaration:string, paramName:string, paramValue:string, value:string, paramDict:Map<string, string>){
+  if (doesFloatParamExistInDeclaration(parameterDeclaration, paramName)){
+    if (isParamAlreadyInSingleQuotes(paramValue)){
         paramValue = "'" + paramValue + "'";
         paramDict.set(paramName, paramValue);
 
@@ -39,7 +39,7 @@ function surroundFloatWithQuotesFlow(parameterDeclaration:string, paramName:stri
   return value;
 }
 
-function replaceParamInQueryFlow(paramDict:Map<string, string>, normalizedQuery:string){
+function replaceParamInQuery(paramDict:Map<string, string>, normalizedQuery:string){
   paramDict.forEach((value:string, key:string) => {    
     normalizedQuery = normalizedQuery.split(key).join(value);
   })
@@ -71,7 +71,7 @@ function parseQuery(
     paramDict.set(paramName, paramValue);   
     
     if (isSurroundFloatWithSingleQuotesEnabled){
-      value = surroundFloatWithQuotesFlow(parameterDeclaration, paramName, paramValue, value, paramDict);
+      value = surroundFloatWithQuotes(parameterDeclaration, paramName, paramValue, value, paramDict);
     }
 
     result += "SET " + value + "\n";
@@ -80,7 +80,7 @@ function parseQuery(
   let normalizedQuery = normalizeQuery(query);
   
   if (isInlineParamEnabled){
-    normalizedQuery = replaceParamInQueryFlow(paramDict, normalizedQuery);
+    normalizedQuery = replaceParamInQuery(paramDict, normalizedQuery);
   }
 
   result += "\n" + normalizedQuery + "\n";

@@ -35,17 +35,17 @@
         ],
         "configuration": [
             {
-                "title": "Sqlops SpExecuteSql To Sql",
+                "title": "SpExecuteSql To Sql",
                 "properties": {
                     "spexecutesql.surroundFloatWithSingleQuotes": {
                         "type": "boolean",
                         "defaultValue": false,
-                        "markdownDescription": "Surrounds `FLOAT` value with single quotes `'`."
+                        "markdownDescription": "Surrounds `FLOAT` value with single quotes `'`"
                     },
                     "spexecutesql.replaceVariablesInQuery": {
                         "type": "boolean",
                         "defaultValue": false,
-                        "markdownDescription": "Replaces the variables in the query with their value."
+                        "markdownDescription": "Replaces the variables in the query with their value"
                     }
                 }
             }
