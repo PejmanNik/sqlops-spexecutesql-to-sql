@@ -16,6 +16,12 @@ Inspiring from https://github.com/mattwoberts/execsqlformat. so Thank you @mattw
 
 ## Release Notes
 
+## [1.0.4] - 2023-09-16 - @tzoug
+### Enhancement
+- Implemented settings [#15](https://github.com/PejmanNik/sqlops-spexecutesql-to-sql/pull/15)
+    - Option to surround `FLOAT` variables with single quotes. Useful for very large numbers.
+    - Option to replace the variables with their value in the query.
+
 ## [1.0.3] - 2020-06-29 - @gerneio
 ### Enhancement
 - Support converting multiple sp_executesql statements [#6](https://github.com/PejmanNik/sqlops-spexecutesql-to-sql/pull/6)
